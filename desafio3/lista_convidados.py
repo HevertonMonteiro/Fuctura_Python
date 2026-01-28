@@ -33,8 +33,8 @@ for convidado in lista_convidados:
 #SOLICITAR INCLUSAO DA LISTA VIA INPUT
 #REALIZAR A INCLUSÃO, REMOÇÃO E ALTERAÇÃO DE NOMES VIA INPUT
 #UTILIZAR REPETIÇÃO PARA TER CERTEZA QUE A ALTERAÇÃO FOI REALIZADA OU NÃO
-#FALTOU ADICIONAR O LOOPING E VERIFICAÇÃO PARA REMOÇÃO TAMBÉM
 #EXIBIR A LISTA ATUALIZADA NO FINAL
+
 
 '''
 lista_convidados = []
@@ -43,46 +43,52 @@ for i in range(10):
     nome = input(f"Digite o nome do convidado {i + 1}: ")
     lista_convidados.append(nome)
 
-adicionar_convidado = input("Adicione um conviadado: ")
+
+adicionar_convidado = input("\nAdicione um novo convidado: ")
+if adicionar_convidado in lista_convidados:
+    print("Convidado já está na lista.")
+else:
+    print("Convidado adicionado com sucesso.")
 lista_convidados.append(adicionar_convidado)
 
-remover_convidado = input("Digite o nome do convidado a ser removido: ")
-if remover_convidado in lista_convidados:
-    lista_convidados.remove(remover_convidado)
-    print(f"Primeiro convidado: {lista_convidados[0]}", "Ultimo convidado:" f"{lista_convidados[-1]}", sep="\n")
-else:
-    print("Convidado não encontrado na lista.")
 
 while True:
-    alterar_convidado = input(
+    remover_convidado = input(
         f"\nLista atual: {lista_convidados}\n"
-        "Digite o nome do convidado que deseja alterar "
-        "(ou pressione ENTER para não alterar mais): "
+        "Digite o nome do convidado a ser removido "
+        "(ou pressione ENTER para cancelar): "
     )
-    if alterar_convidado == "":
-        print("Nenhuma alteração adicional realizada.")
+
+    if remover_convidado == "":
+        print("Remoção cancelada.")
         break
 
-    elif alterar_convidado in lista_convidados:
-        indice = lista_convidados.index(alterar_convidado)
-        novo_convidado = input("Digite o novo nome do convidado: ")
-
-        if novo_convidado:
-            lista_convidados[indice] = novo_convidado
-            print("Convidado alterado com sucesso.")
-        else:
-            print("Nome inválido. Alteração cancelada.")
-
-        continuar = input("Deseja alterar outro convidado? (s/n): ").lower()
-        if continuar != "s":
-            break
+    elif remover_convidado in lista_convidados:
+        lista_convidados.remove(remover_convidado)
+        print("Convidado removido com sucesso.")
+        break
 
     else:
         print("Convidado não encontrado. Tente novamente.")
 
 
+print(f"\nQuantidade atual de convidados: {len(lista_convidados)}")
 
-print("Lista de convidados atualizada:")
+
+if lista_convidados:
+    print(f"Primeiro convidado: {lista_convidados[0]}")
+    print(f"Último convidado: {lista_convidados[-1]}")
+
+
+if len(lista_convidados) > 1:
+    print(f"\nConvidado na posição 1 é: {lista_convidados[1]}")
+    novo_nome = input("Digite o novo nome para esse convidado: ")
+    lista_convidados[1] = novo_nome
+else:
+    print("\nNão há convidados suficientes para realizar a alteração.")
+
+
+print("\nLista de convidados atualizada:")
 for convidado in lista_convidados:
     print(convidado)
 '''
