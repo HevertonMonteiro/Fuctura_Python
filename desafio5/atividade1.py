@@ -1,20 +1,30 @@
 nomes = []
 
-menu = int(input(
-    "Escolha uma opção do menu (1-4):\n"
-    "1. Adicionar nome\n"
-    "2. Ver nomes\n"
-    "3. Remover nome\n"
-    "4. Sair\n"
-))
+menu = 0
 
 while menu != 4:
+
+    try:
+        menu = int(input(
+        "\nEscolha uma opção do menu (1-4):\n"
+        "1. Adicionar nome\n"
+        "2. Ver nomes\n"
+        "3. Remover nome\n"
+        "4. Sair\n"
+    ))
+    except ValueError:
+        print("Digite apenas numeros! ")
+        continue
+
     if menu == 1:
         adicionar_nome = input("Digite o nome que deseja adicionar: ")
         nomes.append(adicionar_nome)
 
     elif menu == 2:
-        print("Nomes da lista:")
+        if len(nomes) == 0:
+            print("lista vazia ")
+        else:
+            print("Nomes na lista: ")
         for n in nomes:
             print(n)
 
@@ -26,17 +36,10 @@ while menu != 4:
         else:
             print("Nome não encontrado.")
 
-    else:
-        print("Digite uma opção válida!")
+    elif menu == 4:
+        print("Programa encerrado.")
 
     
-    menu = int(input(
-        "\nEscolha uma opção do menu (1-4):\n"
-        "1. Adicionar nome\n"
-        "2. Ver nomes\n"
-        "3. Remover nome\n"
-        "4. Sair\n"
-    ))
 
-print("Programa encerrado.")
+
 
